@@ -1,10 +1,17 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+from rich import print
+from rich.table import Table
+from rich.console import Console
+from rich.panel import Panel
+from rich.align import Align
+
+console = Console()
 
 
 def calculate_compound_interest(principal, rate, time):
     """Calculates compound interest on the principal."""
-    return principal * ((1 + rate/100) ** time) - principal
+    return principal * ((1 + rate / 100) ** time) - principal
 
 
 def main():
@@ -34,28 +41,46 @@ def main():
     if amortized_capital > base_amount:
         amortized_capital = base_amount
 
-    print(f"Capital amortizado hasta la fecha: {amortized_capital:.2f} EUR")
+    # Create the initial summary table
+    table = Table(title="Resumen del Préstamo", style="bold magenta")
+    table.add_column("Concepto", justify="left", style="cyan", no_wrap=True)
+    table.add_column("Cantidad", justify="right", style="green")
+
+    table.add_row("Capital amortizado hasta la fecha:",
+                  f"{amortized_capital:.2f} EUR")
 
     if paid_until_now > total_amount:
         paid_until_now = total_amount
 
     amount_remaining = total_amount - paid_until_now
-    print(
-        f"Queda por pagar antes de la aportación extraordinaria: {amount_remaining:.2f} EUR")
+    table.add_row("Queda por pagar:", f"{amount_remaining:.2f} EUR")
 
     total_installments = int(total_amount // installment_value)
     end_date = start_date + relativedelta(months=total_installments)
-    print(
-        f"Fecha de finalización estimada antes de la aportación extraordinaria: {end_date.strftime('%d/%m/%Y')}")
+    table.add_row("Fecha de finalización estimada:",
+                  end_date.strftime('%d/%m/%Y'))
 
-    response = input("¿Quieres aportar una cuantía extraordinaria? (s/n): ")
+    console.print(Panel(Align.center(
+        table), title="[bold green]Resumen del Préstamo[/bold green]", border_style="bright_magenta"))
+
+    response = input("\n¿Quieres aportar una cuantía extraordinaria? (s/n): ")
     if response.lower() == 'n':
+        print(
+            "\n[bold red]No se realizará una aportación extraordinaria. Fin del programa.[/bold red]")
         return
 
     extra_payment = float(input("Introduce la cuantía extraordinaria: "))
     amount_remaining_post = amount_remaining - extra_payment
-    print(
-        f"Queda por pagar después de la aportación extraordinaria: {amount_remaining_post:.2f} EUR")
+
+    # Create the summary table after the extra payment
+    table_post = Table(
+        title="Resumen Después de la Aportación Extraordinaria", style="bold magenta")
+    table_post.add_column("Concepto", justify="left",
+                          style="cyan", no_wrap=True)
+    table_post.add_column("Cantidad", justify="right", style="green")
+
+    table_post.add_row("Queda por pagar después de la aportación extraordinaria:",
+                       f"{amount_remaining_post:.2f} EUR")
 
     remaining_installments_post = int(
         amount_remaining_post // installment_value)
@@ -64,8 +89,11 @@ def main():
 
     end_date_post = current_date + \
         relativedelta(months=remaining_installments_post)
-    print(
-        f"Fecha de finalización estimada después de la aportación extraordinaria: {end_date_post.strftime('%d/%m/%Y')}")
+    table_post.add_row("Fecha de finalización estimada después de la aportación extraordinaria:",
+                       end_date_post.strftime('%d/%m/%Y'))
+
+    console.print(Panel(Align.center(
+        table_post), title="[bold green]Resumen Después de la Aportación Extraordinaria[/bold green]", border_style="bright_magenta"))
 
 
 if __name__ == "__main__":
