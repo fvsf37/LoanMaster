@@ -42,7 +42,3 @@ Sigue las instrucciones en la terminal para ingresar la información del présta
 - `main.py`: Archivo principal que contiene el código de la calculadora de préstamos.
 - `requirements.txt`: Lista de dependencias necesarias para ejecutar el proyecto.
 - `README.md`: Este archivo, que contiene la descripción del proyecto y las instrucciones de uso.
-
-## Contribuciones
-
-Las contribuciones son bienvenidas. Por favor, abre un issue o envía un pull request para discutir cualquier cambio que te gustaría realizar.
