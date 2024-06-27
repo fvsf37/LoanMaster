@@ -63,3 +63,7 @@ function calculateLoan() {
     endDate.setMonth(endDate.getMonth() + 1);
   }
 }
+
+document.getElementById("toggle-dark-mode").addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+});

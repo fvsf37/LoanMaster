@@ -4,6 +4,11 @@ body {
   font-family: Arial, sans-serif;
 }
 
+body.dark-mode {
+  background-color: #121212;
+  color: #ffffff;
+}
+
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
@@ -22,9 +27,17 @@ input[type="number"] {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+body.dark-mode .container {
+  background-color: #1e1e1e;
+}
+
 #result {
   background-color: #e9ecef;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode #result {
+  background-color: #2e2e2e;
 }
