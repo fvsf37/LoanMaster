@@ -78,6 +78,7 @@ def main():
     total_installments = int(total_amount // installment_value)
     end_date = start_date + relativedelta(months=total_installments)
 
+
     print_summary("RESUMEN DEL PRÉSTAMO", amortized_capital, amount_remaining, end_date)
 
     if get_yes_or_no("¿Quieres aportar una cuantía extraordinaria? (s/n): ") == 'n':
