@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora de Préstamos</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="text-center mb-4">Calculadora de Préstamos</h1>
+      <form id="loan-form" class="needs-validation" novalidate>
+        <div class="form-group">
+          <label for="base-amount">Cuantía Base:</label>
+          <input type="number" class="form-control" id="base-amount" required />
+          <div class="invalid-feedback">
+            Por favor, ingrese la cuantía base.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="interest-rate">Tipo de Interés Anual (%):</label>
+          <input
+            type="number"
+            class="form-control"
+            id="interest-rate"
+            required
+          />
+          <div class="invalid-feedback">
+            Por favor, ingrese el tipo de interés anual.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="opening-fee">Comisión de Apertura:</label>
+          <input type="number" class="form-control" id="opening-fee" required />
+          <div class="invalid-feedback">
+            Por favor, ingrese la comisión de apertura.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="installment-value">Valor de Cada Cuota:</label>
+          <input
+            type="number"
+            class="form-control"
+            id="installment-value"
+            required
+          />
+          <div class="invalid-feedback">
+            Por favor, ingrese el valor de cada cuota.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="start-date">Fecha de Inicio (DD/MM/AAAA):</label>
+          <input type="text" class="form-control" id="start-date" required />
+          <div class="invalid-feedback">
+            Por favor, ingrese la fecha de inicio.
+          </div>
+        </div>
+        <button
+          type="button"
+          class="btn btn-primary btn-block"
+          onclick="calculateLoan()"
+        >
+          Calcular
+        </button>
+      </form>
+      <div id="result" class="mt-4">
+        <h2 class="text-center">Resumen del Préstamo</h2>
+        <p id="amortized-capital"></p>
+        <p id="amount-remaining"></p>
+        <p id="end-date"></p>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
